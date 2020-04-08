@@ -1,0 +1,1313 @@
+/*=======================================================================================================================================*/
+// GENERAL STYLES
+/*=======================================================================================================================================*/
+
+/*========================Imports==============================*/
+@import 'animate';
+
+/*========================Functions==============================*/
+
+// Responsive VW functions
+$max-breakpoint-xs: 375;
+
+$max-breakpoint-md: 907;
+
+$max-breakpoint-xl: 1440;
+
+@function get-vw-xs($target) {
+    $vw-context: ($max-breakpoint-xs*.01) * 1px;
+    @return ($target/$vw-context) * 1vw;
+}
+
+@function get-vw-md($target) {
+    $vw-context: ($max-breakpoint-md*.01) * 1px;
+    @return ($target/$vw-context) * 1vw;
+}
+
+@function get-vw-xl($target) {
+    $vw-context: ($max-breakpoint-xl*.01) * 1px;
+    @return ($target/$vw-context) * 1vw;
+}
+
+
+// Responsive Pixels function
+@function responsive-px($min-px, $max-px, $min-vw, $max-vw) {
+    @return calc(#{$min-px}px + (#{$max-px} - #{$min-px}) * ((100vw - #{$min-vw}px) / (#{$max-vw} - #{$min-vw})));
+}
+
+/*========================Mixins==============================*/
+
+// Media Mixins
+@mixin min-screen($min) {
+    @media(min-width:#{$min}px) {
+        @content;
+    }
+}
+
+@mixin max-screen($max) {
+    @media(max-width:#{$max}px) {
+        @content;
+    }
+}
+
+@mixin responsive($property, $value1, $value2) {
+
+    $getMd: get-vw-md(($value1 + $value2)/2);
+
+    #{$property}: get-vw-xs($value1);
+
+    @include min-screen($max-breakpoint-xs+1) {
+        #{$property}: $getMd;
+    }
+
+    @include min-screen($max-breakpoint-md+1) {
+        #{$property}: get-vw-xl($value2);
+    }
+
+    @include min-screen($max-breakpoint-xl+1) {
+        #{$property}: $value2;
+    }
+
+
+}
+
+
+// Flex Mixins
+@mixin flex {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+}
+
+@mixin justify-content($content: center) {
+    @if $content==flex-start {
+        -webkit-box-pack: start;
+        -ms-flex-pack: start;
+    }
+
+    @else if $content==flex-end {
+        -webkit-box-pack: end;
+        -ms-flex-pack: end;
+    }
+
+    @else if $content==center {
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+    }
+
+    @else if $content==space-between {
+        -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+    }
+
+    @else if $content==space-around {
+        -ms-flex-pack: distribute;
+    }
+
+    -webkit-justify-content: $content;
+    /*android 4.3, Safari*/
+    -ms-justify-content: $content;
+    /*IE mobile*/
+    justify-content: $content
+}
+
+@mixin align-items($items: center) {
+    @if $items==stretch {
+        -webkit-box-align: stretch;
+        -ms-flex-align: stretch;
+    }
+
+    @else if $items==center {
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+    }
+
+    @else if $items==flex-start {
+        -webkit-box-align: start;
+        -ms-flex-align: start;
+    }
+
+    @else if $items==flex-end {
+        -webkit-box-align: end;
+        -ms-flex-align: end;
+    }
+
+    @else if $items==baseline {
+        -webkit-box-align: baseline;
+        -ms-flex-align: baseline;
+    }
+
+    -webkit-align-items: $items;
+    /*android 4.3, Safari*/
+    -ms-align-items: $items;
+    /*IE mobile*/
+    align-items: $items;
+}
+
+@mixin flex-wrap($wrap: wrap) {
+    @if $wrap==nowrap {
+        -webkit-box-lines: single;
+        /*Old webkit fixes for android until at least 4.2*/
+        -ms-flex-wrap: none;
+    }
+
+    @else if $wrap==wrap {
+        -ms-flex-wrap: $wrap;
+        -webkit-box-lines: multiple;
+    }
+
+    @else if $wrap==wrap-reverse {
+        -ms-flex-wrap: $wrap;
+    }
+
+    flex-wrap: $wrap;
+}
+
+@mixin flex-direction($direction: column) {
+    @if $direction==column {
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+    }
+
+    @else if $direction==row {
+        -webkit-box-orient: horizontal;
+        -webkit-box-direction: normal;
+    }
+
+    @else if $direction==column-reverse {
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: reverse;
+    }
+
+    @else if $direction==row-reverse {
+        -webkit-box-orient: horizontal;
+        -webkit-box-direction: reverse;
+    }
+
+    -webkit-flex-direction: $direction;
+    /*android 4.3, IE mobile, Safari*/
+    -ms-flex-direction: $direction;
+    /*IE10*/
+    flex-direction: $direction;
+}
+
+@mixin order($order) {
+    /* <number>*/
+    -webkit-box-ordinal-group: $order;
+    /*iOS 6-, Safari 3.1-6 */
+    -ms-flex-order: $order;
+    /*IE10*/
+    -webkit-order: $order;
+    /*android 4.3, IE mobile, Safari*/
+    order: $order;
+}
+
+
+
+// Hover Mixins
+@mixin hover {
+    @include min-screen(768) {
+        @include hoverall {
+            @content;
+        }
+    }
+}
+
+
+
+@mixin hoverall {
+
+    &:hover,
+    &:focus,
+    &:active {
+        @content;
+    }
+}
+
+
+
+// Transform Mixin
+@mixin transform($transform-property) {
+    -webkit-transform: #{$transform-property};
+    -ms-transform: #{$transform-property};
+    transform: #{$transform-property};
+}
+
+// Transition Mixin
+@mixin simple_transition($value) {
+    -webkit-transition: $value;
+    -moz-transition: $value;
+    -ms-transition: $value;
+    -o-transition: $value;
+    transition: $value;
+}
+
+@mixin transition($args...) {
+    $type: nth($args, length($args));
+    $props: remove-nth($args, length($args));
+    $result: ();
+
+    @for $i from 1 through length($props) {
+        $prop: nth($props, $i);
+        $result: append($result, $prop);
+        $result: append($result, $type);
+
+        @if $i !=length($props) {
+            $result: append($result, unquote($string: ","));
+        }
+    }
+
+    @include simple_transition($result);
+}
+
+/*========================Variables==============================*/
+
+$primary-color: #333333;
+$secondary-color: #F9F7F2;
+$support-color: #BBA285;
+
+$primary-text-color: #FFFFFF;
+$secondary-text-color: $primary-color;
+$support-text-color: rgba(#FFFFFF, 0.30);
+$support-text-color-2: rgba(#333333, 0.50);
+
+$webfont1: 'PT Serif';
+$webfont2: 'Roboto';
+
+$cta-color: #6327EB;
+$cta-text-color: #FFFFFF;
+
+$H1: 700 72px/80px $webfont1;
+$H2: 700 56px/64px $webfont1;
+$H3: 700 40px/48px $webfont1;
+$H4: 700 24px/32px $webfont1;
+$H5: 300 24px/32px $webfont2;
+$Label: 700 12px/14px $webfont2;
+$Text_Big: 300 24px/32px $webfont2;
+$Text: 300 20px/32px $webfont2;
+$Text_Gray: 300 20px/32px $webfont2;
+$Text_Small: 400 14px/24px $webfont2;
+
+/*========================Custom Styles==============================*/
+
+.cta {
+    @include simple_transition(all 0.3s ease);
+    @include responsive(width, 170px, 170px);
+    @include responsive(line-height, 48px, 48px);
+    @include responsive(font-size, 18px, 18px);
+    display: inline-block;
+    border-radius: 3px;
+    font-family: $webfont2;
+    font-weight: 400;
+    text-align: center;
+    background: transparent;
+    color: $cta-color;
+    border: 1px solid $cta-color;
+
+    &:hover {
+        @extend .animated;
+        @extend .pulse;
+        text-decoration: none;
+        background: $cta-color;
+        border-color: $cta-color;
+        color: $cta-text-color;
+    }
+
+    &.cta-primary {
+        color: $cta-text-color;
+        border-color: $support-text-color;
+
+        &:hover {
+            border-color: $cta-color;
+        }
+    }
+
+}
+
+.circle-icon,
+.swiper-container {
+
+    span,
+    i,
+    .swiper-button-prev,
+    .swiper-button-next {
+        @include responsive(width, 48px, 48px);
+        @include responsive(height, 48px, 48px);
+        border: 1px solid $support-text-color;
+        border-radius: 50%;
+        display: block;
+        text-align: center;
+        color: $primary-text-color;
+
+        &::before,
+        &::after {
+            @include responsive(font-size, 16px, 16px);
+            @include responsive(line-height, 48px, 48px);
+        }
+
+    }
+
+    .swiper-button-prev,.swiper-button-next{
+        @include simple_transition(all 0.3s ease);
+        border-color: $cta-color;
+        &::after{
+            color: $cta-color;
+        }
+
+        @include hover(){
+            background: $cta-color; 
+            &::after{
+                color: #fff;
+            }
+        }
+    }
+
+    @include hover() {
+        text-decoration: none;
+    }
+}
+
+.gray-txt {
+    font: $Text_Gray;
+    color: rgba($color: #333333, $alpha: 0.5);
+}
+
+.navbar-row {
+    position: relative;
+}
+
+.primary-bg {
+    background: $primary-color;
+    color: $primary-text-color;
+
+}
+
+.pop-icon {
+    @include flex();
+    @include justify-content(center);
+    @include align-items(center);
+    @include responsive(width, 85px, 170px);
+    @include responsive(height, 85px, 170px);
+    @include responsive(bottom, 41px, 54px);
+    @include responsive(left, -30px, -48px);
+    @include responsive(border-radius, 1.5px, 3px);
+    right: auto;
+    top: auto;
+    position: absolute;
+    background: $support-color;
+    -webkit-box-shadow: 0 10px 20px 0 rgba(#613400, 0.3);
+    box-shadow: 0 10px 20px 0 rgba(#613400, 0.3);
+
+    span,
+    i {
+        @include responsive(width, 56px, 112px);
+        @include responsive(height, 56px, 112px);
+        border: 1px solid $support-text-color;
+        border-radius: 50%;
+        display: block;
+        position: relative;
+        text-align: center;
+        color: $primary-text-color;
+
+        &::before {
+            content: '';
+            @include responsive(width, 24px, 48px);
+            @include responsive(height, 24px, 48px);
+            display: inline-block;
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            top: 0;
+            margin: auto;
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-position: center center;
+        }
+    }
+}
+
+.row {
+    width: 100%;
+    margin: 0;
+
+    .col-md-6 {
+        padding: 0;
+    }
+
+    &.right-row {
+        @include min-screen(768) {
+            @include responsive(margin-left, 40px, 40px);
+            border-radius: 3px;
+            -webkit-box-shadow: 0 20px 40px 0 rgba(#000000, 0.05);
+            box-shadow: 0 20px 40px 0 rgba(#000000, 0.05);
+        }
+    }
+}
+
+.scrolled {
+    @include responsive(width, 176px, 176px);
+    @include responsive(height, 176px, 176px);
+
+    display: block;
+    position: absolute;
+}
+
+.section {
+
+    @include flex();
+    @include align-items(center);
+    @include responsive(padding-top, 80px, 160px);
+    @include responsive(padding-bottom, 80px, 160px);
+
+    @include min-screen(1200) {
+        @include responsive(height, 880px, 880px);
+        padding: 0;
+    }
+
+}
+
+.white-bg {
+    background: #FFFFFF;
+    color: $secondary-text-color;
+}
+
+/*========================MAIN==============================*/
+
+body {
+    box-sizing: border-box;
+    background: $secondary-color;
+    color: $secondary-text-color;
+
+    h1 {
+        font: $H1;
+        margin: 0;
+        @include responsive(font-size, 56px, 72px);
+        @include responsive(line-height, 64px, 80px);
+    }
+
+    h2 {
+        font: $H2;
+        margin: 0;
+        @include responsive(font-size, 40px, 56px);
+        @include responsive(line-height, 48px, 64px);
+    }
+
+    h3 {
+        font: $H3;
+        margin: 0;
+        @include responsive(font-size, 40px, 40px);
+        @include responsive(line-height, 48px, 48px);
+    }
+
+    h4 {
+        font: $H4;
+        margin: 0;
+    }
+
+    h5 {
+        font: $H5;
+        margin: 0;
+        @include responsive(font-size, 24px, 24px);
+        @include responsive(line-height, 32px, 32px);
+    }
+
+    img {
+        display: inline-block;
+        width: 100%;
+    }
+
+    label {
+        font: $Label;
+    }
+
+    nav {
+        @include simple_transition(all 0.3s ease-in-out);
+        width: 100%;
+        position: absolute !important;
+        background: transparent;
+        z-index: 20;
+
+        &.darken {
+            background: $primary-color;
+        }
+
+        a,
+        .fa {
+            color: $primary-text-color;
+
+            &:hover {
+                @extend .animated;
+                @extend .pulse;
+                text-decoration: none;
+                color: $primary-text-color;
+            }
+        }
+
+        .navbar-brand {
+            @extend h3;
+            text-transform: uppercase;
+        }
+
+        .social-header {
+            @extend .circle-icon;
+            margin: 15px 0;
+            text-align: center;
+
+            a {
+                display: inline-block;
+            }
+
+        }
+
+        .navbar-toggler {
+            @extend .circle-icon;
+        }
+
+    }
+
+    p {
+        font: $Text;
+        @include responsive(font-size, 20px, 20px);
+        @include responsive(line-height, 32px, 32px);
+    }
+
+    small {
+        font: $Text_Small;
+        color: rgba($color: #333333, $alpha: 0.5);
+    }
+
+}
+
+
+/*=======================================================================================================================================*/
+// HOMEPAGE 
+/*=======================================================================================================================================*/
+
+/*========================Hero Banner Section==============================*/
+
+.hero {
+    position: relative;
+    background-image: url('https://higueradave.github.io/restaurant/images/banner-bg.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+
+    &::before {
+        content: '';
+        display: block;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        background: rgba($color: #333333, $alpha: 0.9);
+    }
+
+    .banner-container {
+        @include responsive(padding-top, 37px, 73px);
+        @include responsive(padding-bottom, 50px, 178px);
+        margin-top: 56px;
+        color: $primary-text-color;
+
+        .banner-row {
+            @include align-items(center);
+
+            .banner-wrap {
+
+                h1 {
+                    @include responsive(margin-bottom, 16px, 10px);
+                    position: relative;
+
+                    span {
+                        display: block;
+                    }
+
+                }
+
+                h5 {
+                    @include responsive(margin-bottom, 42px, 42px);
+                }
+
+
+                .banner-cta-wrap {
+                    @include flex();
+                    @include justify-content(space-between);
+                    @include responsive(width, 346px, 370px);
+                    max-width: 100%;
+
+                    @include max-screen(767) {
+                        @include responsive(margin-bottom, 36px, 36px);
+                    }
+                }
+
+            }
+
+            .banner-img {
+                @include responsive(width, 346px, 555px);
+                max-width: 100%;
+                display: block;
+                object-fit: contain;
+                object-fit: center;
+            }
+
+            .scrolled {
+                @include responsive(top, -19px, -53px);
+                @include responsive(right, 24px, 111px);
+            }
+
+        }
+
+        .banner-scroll {
+            @extend .circle-icon;
+            position: absolute;
+            bottom: 48px;
+            right: 50%;
+            transform: translateX(50%);
+        }
+
+    }
+}
+
+/*========================History Section==============================*/
+
+
+.history-wrap {
+
+    @include flex();
+    @include align-items(center);
+
+    @include max-screen(767) {
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+
+    .history-img {
+        position: relative;
+
+        @include max-screen(767) {
+            @include responsive(padding-bottom, 55px, 55px);
+        }
+
+        @include min-screen(768) {
+            @include responsive(padding-right, 15px, 15px);
+        }
+
+        .cutlery-wrap {
+            @extend .pop-icon;
+
+            i {
+                &::before {
+                    background-image: url('https://higueradave.github.io/restaurant/images/cutlery-icon.png');
+                }
+            }
+        }
+
+        .scrolled {
+            @include responsive(top, 16px, 59px);
+            @include responsive(right, -40px, -33px);
+            z-index: -1;
+        }
+    }
+
+    .history-info {
+
+        @include min-screen(768) {
+            @include responsive(padding-left, 115px, 115px);
+        }
+
+        h5 {
+            @include responsive(margin-bottom, 8px, 8px);
+
+        }
+
+        p {
+            @include responsive(margin-bottom, 19px, 19px);
+
+        }
+    }
+}
+
+/*========================Offers Section==============================*/
+
+.offers-row {
+
+    @extend .right-row;
+
+    .offers-container {
+        height: auto;
+
+        @include min-screen(1200) {
+            @include responsive(height, 880px, 880px)
+        }
+
+        .offers-wrap {
+
+            @include flex();
+            @include align-items(center);
+
+            .offers-img {
+                position: relative;
+
+                @include max-screen(767) {
+                    @include responsive(margin-bottom, 55px, 55px);
+                }
+
+                @include min-screen(768) {
+                    @include responsive(margin-left, 14px, 14px);
+                    @include responsive(margin-right, 11px, 11px);
+                }
+
+                .cutlery-wrap {
+                    @extend .pop-icon;
+
+                    i {
+                        &::before {
+                            background-image: url('https://higueradave.github.io/restaurant/images/cutlery-icon.png');
+                        }
+                    }
+                }
+
+            }
+
+            .offers-info {
+                position: relative;
+
+                @include min-screen(768) {
+                    @include responsive(margin-right, 47px, 47px);
+                }
+
+
+                h2 {
+                    @include responsive(margin-bottom, 44px, 52px);
+                }
+
+                h5 {
+                    @include responsive(margin-bottom, 8px, 9px);
+                }
+
+                p,
+                .gray-txt {
+                    display: inline-block;
+                    margin: 0;
+                }
+
+                .col-10,
+                .col-12,
+                .col-2 {
+                    @include responsive(margin-bottom, 6px, 6px);
+                    padding: 0;
+                }
+
+                .col-2 {
+                    text-align: right;
+                }
+
+                .col-12 {
+                    @include responsive(margin-bottom, 20px, 20px);
+                }
+
+
+            }
+
+            .scrolled {
+                @include responsive(top, -42px, -42px);
+                @include responsive(right, 8px, 25px);
+            }
+
+        }
+    }
+}
+
+/*========================Lunch Section==============================*/
+
+.lunch-container {
+
+    .lunch-wrap {
+
+        @include flex();
+        @include align-items(center);
+
+        h2 {
+            @include responsive(margin-bottom, 29px, 40px);
+        }
+
+        h5 {
+            @include responsive(margin-bottom, 8px, 9px);
+        }
+
+        img {
+            display: block;
+            @include responsive(width, 112px, 112px);
+            @include responsive(height, 112px, 112px);
+        }
+
+        p {
+            @include responsive(margin-bottom, 14px, 14px);
+            @include flex();
+            @include justify-content(space-between);
+        }
+
+        .gray-txt {
+            display: block;
+            @include responsive(padding-left, 6px, 6px);
+        }
+
+        .lunch-desc,
+        small {
+            display: block;
+
+            @include max-screen(767) {
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+        }
+
+        .row {
+            @include flex-wrap(nowrap);
+            @include align-items(center);
+            @include justify-content(center);
+            border-bottom: 1px solid #EAEAEA;
+
+            @include max-screen(767) {
+                @include responsive(margin-bottom, 16px, 16px);
+            }
+
+            @include min-screen(768) {
+                @include responsive(padding-right, 20px, 20px);
+                @include responsive(padding-left, 30px, 30px);
+                @include responsive(padding-top, 17px, 17px);
+                @include responsive(padding-bottom, 17px, 17px);
+            }
+
+            >div {
+                padding: 0;
+
+                &.lunch-col {
+                    @include responsive(width, 234px, 457px);
+                    @include responsive(padding-left, 32px, 32px);
+                }
+            }
+        }
+
+        >div {
+
+            &:nth-child(2) {
+                >div {
+                    @include min-screen(768) {
+                        border-right: 1px solid #EAEAEA;
+                    }
+                }
+            }
+
+
+            &:nth-child(4) {
+                @include responsive(margin-top, 48px, 64px);
+            }
+        }
+    }
+}
+
+/*========================Events Section==============================*/
+
+.events-container {
+    @include justify-content(center);
+
+
+    h5 {
+        @include responsive(margin-bottom, 8px, 9px);
+        text-align: center;
+    }
+    
+    h2 {
+        @include responsive(margin-bottom, 29px, 39px);
+        text-align: center;
+    }
+
+    .events-wrap{
+        position: relative;
+
+        .scrolled {
+            @include responsive(bottom, -47px, -48px);
+            @include responsive(right, 39px, -48px);
+        }
+    }
+
+    .swiper-container {
+        @include responsive(width, 346px, 1170px);
+        height: auto;
+
+        h3{
+            margin-bottom: 0;
+        }
+
+        p {
+            @include responsive(margin-bottom, 19px, 35px);
+
+            &:first-of-type{
+                @include responsive(margin-bottom, 8px, 9px);
+            }
+        }
+
+    
+        small {
+            @include responsive(margin-bottom, 25px, 25px);
+            display: inline-block;
+        }
+
+        .col-md-6{
+            &:nth-child(2){
+                @include flex();
+                @include align-items(center);
+            }
+        }
+        
+        .history-info{
+            @include responsive(padding-left, 30px, 66px); 
+            @include responsive(padding-top, 42px, 42px); 
+            @include responsive(padding-bottom, 48px, 48px); 
+        }
+
+        .events-img{
+            height: 100%;
+            overflow: hidden;
+            img{
+                height: 100%;
+                object-fit: cover;
+            }
+        }
+
+    }
+}
+
+/*========================Gallery Section==============================*/
+.gallery-container{
+    @include responsive(padding-top,73px ,121px );
+    @include responsive(padding-bottom,81px ,64px );
+}
+.gallery-wrap {
+    h5 {
+        @include responsive(margin-bottom, 8px, 9px);
+    }
+
+    h2 {
+        @include responsive(margin-bottom, 29px, 39px);
+    }
+
+    .col-lg-4 {
+        @include responsive(margin-bottom, 17px, 32px);
+        padding: 0 15px;
+    }
+}
+
+/*========================Reviews Section==============================*/
+.reviews-row {
+    background: transparent;
+    position: relative;
+
+    &::after{
+        @include responsive(height,496px ,368px );
+        content: '';
+        display: block;
+        width: 100%;
+        position: absolute;
+        background: $primary-color;
+        bottom: 0;
+        right: 0;
+    }
+
+    .reviews-container {
+        @include justify-content(center);
+        @include responsive(padding-top,41px ,31px );
+        @include responsive(padding-bottom,79px ,96px );
+
+        h5 {
+            @include responsive(margin-bottom, 8px, 9px);
+            text-align: center;
+        }
+        
+        h2 {
+            @include responsive(margin-bottom, 29px, 39px);
+            text-align: center;
+        }
+        
+        .reviews-info{
+            @include responsive(padding-top, 65px, 65px);
+            @include responsive(padding-bottom, 75px, 75px);
+            width: 100%;
+
+
+            h4{
+                @include responsive(margin-bottom, 18px, 18px);
+            }
+
+            p{
+                @include responsive(width, 286px, 770px);
+                @include responsive(margin-bottom, 35px, 26px);
+                margin: 0 auto;
+            }
+    
+            img{
+                @include responsive(margin-bottom, 45px, 45px);
+                @include responsive(width, 128px, 128px);
+            }
+
+            .stars-rating{
+                @include flex();
+                @include justify-content(center);
+                @include responsive(margin-bottom, 18px, 18px);
+                text-align: center;
+
+                i{
+                    &::before{
+                        font-size: 23px;
+                        color: $support-color;
+                    }
+                }
+            }
+        }
+
+        .swiper-container {
+            @include responsive(width, 346px, 1170px);
+            height: auto;
+    
+        }
+    }
+}
+
+
+/*========================About Section==============================*/
+.about-wrap {
+    @include justify-content(space-between);
+    padding: 0;
+    position: relative;
+
+    h5 {
+        @include responsive(margin-bottom, 8px, 9px);
+        text-align: center;
+    }
+
+    h2 {
+        @include responsive(margin-bottom, 61px, 55px);
+        text-align: center;
+    }
+
+    .col-md-4 {
+        padding: 0;
+
+        @include max-screen(767) {
+            display: none;
+
+            &:nth-child(2) {
+                display: block;
+            }
+        }
+
+        @include min-screen(768) {
+            max-width: 370px;
+        }
+    }
+
+    .press-info {
+        @include responsive(width, 346px, 370px);
+        @include responsive(height, 464px, 464px);
+        @include responsive(padding-top, 49px, 49px);
+        @include responsive(padding-bottom, 49px, 49px);
+        @include responsive(padding-left, 30px, 30px);
+        @include responsive(padding-right, 30px, 30px);
+        margin: 0 auto;
+
+        @include max-screen(991){
+            margin-bottom: 40px;
+        }
+
+        p {
+            @include responsive(margin-bottom, 25px, 25px);
+        }
+
+
+        .press-header {
+            @include responsive(height, 40px, 44px);
+            @include responsive(margin-bottom, 35px, 35px);
+            @include flex();
+            @include align-items(center);
+        }
+
+    }
+
+    .scrolled {
+        @include responsive(bottom, -48px, -48px);
+        @include responsive(right, -109px, 309px);
+    }
+}
+
+/*========================Chef Section==============================*/
+
+.chef-wrap {
+
+    @include flex();
+    @include align-items(center);
+
+    @include max-screen(767) {
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+
+
+    .chef-img {
+        position: relative;
+
+        @include max-screen(767) {
+            @include responsive(padding-bottom, 55px, 55px);
+        }
+
+        @include min-screen(768) {
+            @include responsive(padding-right, 15px, 15px);
+        }
+
+        .chef-icon-wrap {
+            @extend .pop-icon;
+
+            i {
+                &::before {
+                    background-image: url('https://higueradave.github.io/restaurant/images/chef-icon.png');
+                }
+            }
+        }
+
+        .scrolled {
+            @include responsive(top, 16px, 59px);
+            @include responsive(right, -40px, -33px);
+            z-index: -1;
+        }
+    }
+
+    .chef-info {
+
+        @include min-screen(768) {
+            @include responsive(padding-left, 115px, 115px);
+        }
+
+        h5 {
+            @include responsive(margin-bottom, 8px, 8px);
+
+        }
+
+        p {
+            @include responsive(margin-bottom, 41px, 41px);
+
+            &.gray-txt {
+                margin-bottom: 0;
+            }
+        }
+    }
+}
+
+/*========================Table Section==============================*/
+
+.table-row {
+    @extend .right-row;
+    position: relative;
+    z-index: 2;
+
+    @include min-screen(768) {
+        @include responsive(margin-bottom, -160px, -160px);
+    }
+
+    .table-wrap {
+        >div {
+            &:first-child {
+                @include max-screen(767) {
+                    @include responsive(margin-bottom, 92px, 92px);
+                }
+
+                @include min-screen(768) {
+                    @include responsive(padding-right, 47px, 47px);
+                }
+
+                form {
+                    .form-group {
+                        &:last-of-type() {
+                            @include responsive(margin-bottom, 32px, 32px);
+                        }
+                    }
+                }
+            }
+
+            &:last-child {
+                @include min-screen(768) {
+                    @include responsive(padding-left, 15px, 15px);
+                    @include responsive(width, 570px, 570px);
+                }
+                
+            }
+        }
+    }
+
+    .table-col{
+        position: relative;
+
+        .scrolled {
+            @include responsive(top, -39px, -48px);
+            @include responsive(right, 17px, -69px);
+            z-index: -1;
+        }
+    }
+
+}
+
+
+.footer-row{
+    @include responsive(height,656px ,656px );
+    @include responsive(padding-top, 78px, 254px);
+    @include responsive(padding-bottom, 75px, 107px);
+    
+    .footer-container{
+        a{
+            font: $Text;
+            color: $primary-text-color;
+            
+            &.navbar-brand{
+                font: $H4;
+                margin: 0;
+                @include responsive(margin-bottom, 26px, 21px);
+            }
+        }
+
+        a,
+        .fa {
+            color: $primary-text-color;
+
+            &:hover {
+                @extend .animated;
+                @extend .pulse;
+                text-decoration: none;
+                color: $primary-text-color;
+            }
+        }
+        
+        .navbar-nav{
+            @include justify-content(center);
+            
+            @include min-screen(768){
+                @include flex-direction(row);
+            }
+
+            a{
+                padding: 0 25px;
+                @include responsive(margin-bottom, 38px, 91px);
+            }
+            
+        }
+        
+        .social-footer{
+            @include responsive(margin-bottom, 29px, 29px);
+            @extend .circle-icon;
+            @include flex();
+            @include justify-content(center);
+            a{
+                padding: 0 7px;
+            }
+        }
+    }
+}

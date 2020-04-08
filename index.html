@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>REST</title>
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=PT+Serif:700|Roboto:300,400,700&display=swap" rel="stylesheet">
+    <!-- Bootstrap Styles -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <!-- Swiper Styles -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper/css/swiper.css">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/css/swiper.min.css">
+    <!-- Fancybox -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+    <!-- Animate -->
+    <link rel="stylesheet" href="styles/animate.css" />
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="styles/styles.css">
+
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <div class="row navbar-row">
+        <nav id="navbar" class="navbar navbar-expand-md">
+            <div class="container">
+                <a class="navbar-brand" href="#">Rest</a>
+                <button id="menuButton" class="navbar-toggler" type="button" data-toggle="collapse"
+                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="fa fa-bars menu-icon"></span>
+                </button>
+
+                <!-- Navbar Collapse -->
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav m-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">About Us</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Menu</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Events</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">News</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Contact</a>
+                        </li>
+                    </ul>
+                    <div class="social-header">
+                        <a href="https://facebook.com" target="_blank"><i class="fa fa-facebook"></i></a>
+                        <a href="https://twitter.com" target="_blank"><i class="fa fa-twitter"></i></a>
+                        <a href="https://instagram.com" target="_blank"><i class="fa fa-instagram"></i></a>
+                    </div>
+                </div>
+
+            </div>
+        </nav>
+    </div>
+
+    <!-- HeroShot -->
+    <div class="row hero">
+        <div id="banner" class="container banner-container">
+            <div class="row banner-row">
+                <div class="col-xs-12 col-md-6 animated fadeInLeft">
+                    <img class="scrolled" src="images/white-dots.png" alt="Dots">
+                    <div class="banner-wrap ">
+                        <h1>
+                            Welcome to our <span>restaurant</span>
+                        </h1>
+                        <h5>Everyday 8:00 am - 11:00 pm</h5>
+
+                        <div class="banner-cta-wrap">
+                            <a href="" class="cta cta-primary" title="Book Now">Book a table</a>
+                            <a href="" class="cta cta-primary" title="Check Out Our Specialities">See menu</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-md-6">
+                    <div class="banner-img animated fadeInRight">
+                        <img src="images/banner-img.png" alt="Good Food">
+                    </div>
+                </div>
+            </div>
+            <a href="#history" id="bannerScroll" class="banner-scroll"><i class="fa fa-angle-down"></i></a>
+        </div>
+    </div>
+
+    <!-- History -->
+    <div class="row history-row">
+        <div id="history" class="container history-container section">
+            <div class=" row history-wrap">
+                <div class="col-xs-12 col-md-6">
+                    <div class="history-img">
+                        <img src="images/history-img.jpg" alt="Our History">
+                        <img class="scrolled" src="images/beige-dots.png" alt="Dots">
+                        <div class="cutlery-wrap icon">
+                            <i class="cutlery-icon"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-md-6">
+                    <div class="history-info">
+                        <h5>Discover</h5>
+                        <h2>Our History</h2>
+                        <p>A peep at some distant orb has power to raise and purify our thoughts like a strain of sacred
+                            music,
+                            or a noble picture, or a passage from the grander poets. It always does one good.</p>
+                        <a href="#" class="cta" title="Read More About Us">Read more</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Offers -->
+    <div class="row white-bg offers-row">
+        <div id="offers" class="container offers-container section">
+            <div class="row offers-wrap">
+                <div class="col-xs-12 col-md-6">
+                    <img class="scrolled" src="images/beige-dots.png" alt="Dots">
+                    <div class="offers-info">
+                        <h5>Check out our</h5>
+                        <h2>
+                            Seasonal Offers
+                        </h2>
+                        <div class="row">
+                            <div class="col-10">
+                                <p>Alaskan Fish & Chips</p>
+                            </div>
+                            <div class="col-2">
+                                <span class="gray-txt">$14.00</span>
+                            </div>
+                            <div class="col-12">
+                                <small>Served with soy sauce, wasabi, pickled ginger and chopsticks</small>
+                                <hr>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-10">
+                                <p>Fishermen's Basket</p>
+                            </div>
+                            <div class="col-2">
+                                <span class="gray-txt">$7.00</span>
+                            </div>
+                            <div class="col-12">
+                                <small>Snow crab, avocado, cucumber, tobiko, Japanese mayonnaise</small>
+                                <hr>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-10">
+                                <p>Chicken Breat Saute Sec</p>
+                            </div>
+                            <div class="col-2">
+                                <span class="gray-txt">$5.00</span>
+                            </div>
+                            <div class="col-12">
+                                <small>A Latte is a coffee drink made with espresso and steamed milk</small>
+                                <hr>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-10">
+                                <p>Crisp Pork Belly</p>
+                            </div>
+                            <div class="col-2">
+                                <span class="gray-txt">$18.00</span>
+                            </div>
+                            <div class="col-12">
+                                <small>Candied salmon, basil potato puree, baby kale marsala</small>
+                                <hr>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-md-6">
+                    <div class="offers-img">
+                        <img src="images/offers-img.jpg" alt="Seasonal Dish">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Lunch -->
+    <div class="row lunch-row">
+        <div id="lunch" class="container lunch-container section">
+            <div class="row lunch-wrap">
+                <div class="col-12 col-md-12 text-center">
+                    <h5>Tasty dishes</h5>
+                    <h2>For Lunch</h2>
+                </div>
+                <div class="col-xs-12 col-md-6">
+
+                    <div class="row">
+                        <div class="">
+                            <img src="images/lunch-thumb.png" alt="Lunch item">
+                        </div>
+                        <div class="lunch-col">
+                            <p><span class="lunch-desc">Huitlacoche Tamle</span>
+                                <span class="gray-txt">$14.00</span>
+                            </p>
+                            <small>Served pickled ginger and chopsticks</small>
+                            
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="">
+                            <img src="images/lunch-thumb.png" alt="Lunch item">
+                        </div>
+                        <div class="lunch-col">
+                            <p><span class="lunch-desc">Creole Tempeh</span>
+                                <span class="gray-txt">$19.00</span>
+                            </p>
+                            <small>Served with soy sauce, wasabi, pickled chopsticks</small>
+                            
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="">
+                            <img src="images/lunch-thumb.png" alt="Lunch item">
+                        </div>
+                        <div class="lunch-col">
+                            <p><span class="lunch-desc">Polenta Nera Cake</span>
+                                <span class="gray-txt">$13.00</span>
+                            </p>
+                            <small>Served with soy sauce, wasabi, pickled ginger</small>
+                            
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-xs-12 col-md-6">
+
+                    <div class="row">
+                        <div class="">
+                            <img src="images/lunch-thumb.png" alt="Lunch item">
+                        </div>
+                        <div class="lunch-col ">
+                            <p><span class="lunch-desc">Mediterranean Salad</span>
+                                <span class="gray-txt">$17.00</span>
+                            </p>
+                            <small>Soy sauce, wasabi, pickled ginger and chopsticks</small>
+                            
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="">
+                            <img src="images/lunch-thumb.png" alt="Lunch item">
+                        </div>
+                        <div class="lunch-col ">
+                            <p><span class="lunch-desc">Pumpkin Curry</span>
+                                <span class="gray-txt">$22.00</span>
+                            </p>
+                            <small>Sauce, wasabi, pickled ginger and chopsticks</small>
+                            
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="">
+                            <img src="images/lunch-thumb.png" alt="Lunch item">
+                        </div>
+                        <div class="lunch-col ">
+                            <p><span class="lunch-desc">Warm Kipfler Potato</span>
+                                <span class="gray-txt">$24.00</span>
+                            </p>
+                            <small>Wasabi, pickled ginger and chopsticks</small>
+                            
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-12 col-md-12 text-center">
+                    <a href="#" title="View Full Menu" class="cta">Full menu</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Events -->
+    <div class="row primary-bg events-row">
+        <div id="events" class="container events-container section ">
+            <div class="events-wrap">
+                <h5>Party with us!</h5>
+                <h2>Upcoming Events</h2>
+                <img class="scrolled" src="images/white-dots.png" alt="Dots">
+
+                <!-- Swiper Container -->
+                <div class="swiper-container">
+                    <div class="swiper-wrapper">
+                        <!-- Slides -->
+                        <div class="swiper-slide">
+
+                            <div class="row event-1">
+                                <div class="col-xs-12 col-md-6">
+                                    <div class="events-img">
+                                        <img src="images/events-img.jpg" alt="Coffee Night">
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-md-6 white-bg">
+                                    <div class="history-info">
+                                        <div>
+                                            <p>Upcoming</p>
+                                            <h3>Coffee Night</h3>
+                                            <small>25 september, 2019</small>
+                                            <p>Apparently we had reached a great height in the atmosphere, for the sky was a
+                                                dead black, and the stars had ceased to twinkle.</p>
+                                            <a href="#" class="cta" title="Book Now">Book a table</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="swiper-slide">
+
+                            <div class="row event-1">
+                                <div class="col-xs-12 col-md-6">
+                                    <div class="events-img">
+                                        <img src="images/events-img.jpg" alt="Coffee Night">
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-md-6 white-bg">
+                                    <div class="history-info">
+                                        <div>
+                                            <p>Upcoming</p>
+                                            <h3>Coffee Night</h3>
+                                            <small>25 september, 2019</small>
+                                            <p>Apparently we had reached a great height in the atmosphere, for the sky was a
+                                                dead black, and the stars had ceased to twinkle.</p>
+                                            <a href="#" class="cta" title="Book Now">Book a table</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- If we need navigation buttons -->
+                    <div class="swiper-button-prev"></div>
+                    <div class="swiper-button-next"></div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Gallery -->
+    <div class="row gallery-row">
+        <div id="gallery" class="container gallery-container">
+            <div class="row gallery-wrap">
+                <div class="col-xs-12 col-md-12 text-center">
+                    <h5>Gallery</h5>
+                    <h2>Our Interior</h2>
+                </div>
+                <div class="col-xs-12 col-md-6 col-lg-4">
+                    <a data-fancybox="gallery" href="images/gallery-1.jpg"><img src="images/gallery-1.jpg"
+                            alt="Gallery"></a></div>
+                <div class="col-xs-12 col-md-6 col-lg-4">
+                    <a data-fancybox="gallery" href="images/gallery-2.jpg"><img src="images/gallery-2.jpg"
+                            alt="Gallery"></a></div>
+                <div class="col-xs-12 col-md-6 col-lg-4">
+                    <a data-fancybox="gallery" href="images/gallery-3.jpg"><img src="images/gallery-3.jpg"
+                            alt="Gallery"></a></div>
+                <div class="col-xs-12 col-md-6 col-lg-4">
+                    <a data-fancybox="gallery" href="images/gallery-4.jpg"><img src="images/gallery-4.jpg"
+                            alt="Gallery"></a></div>
+                <div class="col-xs-12 col-md-6 col-lg-4">
+                    <a data-fancybox="gallery" href="images/gallery-5.jpg"><img src="images/gallery-5.jpg"
+                            alt="Gallery"></a></div>
+                <div class="col-xs-12 col-md-6 col-lg-4">
+                    <a data-fancybox="gallery" href="images/gallery-6.jpg"><img src="images/gallery-6.jpg"
+                            alt="Gallery"></a></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Reviews -->
+    <div class="row reviews-row">
+        <div id="reviews" class="container reviews-container section ">
+            <div class="reviews-wrap">
+                <!-- Swiper Container -->
+                <div class="swiper-container">
+                    <div class="swiper-wrapper">
+                        <!-- Slides -->
+                        <div class="swiper-slide text-center">
+                            <h5>What people</h5>
+                            <h2>Say About Us</h2>
+                            <div class="reviews-info white-bg">
+                                <img src="images/about-thumb.png" alt="Review">
+                                <p>As I went on, still gaining velocity, the palpitation of night and day merged into
+                                    one
+                                    continuous greyness the sky took on a wonderful deepness of blue, a splendid
+                                    luminous
+                                    color like that of early twilight; the jerking sun became a streak of fire, a
+                                    brilliant
+                                    arch.</p>
+                                <p class="stars-rating">
+                                    <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i
+                                        class="fa fa-star"></i><i class="far fa-star"></i>
+                                </p>
+                                <h4>Magnus Kekhuis</h4>
+                                <p class="gray-txt">Restaurant expert</p>
+                            </div>
+                        </div>
+                        <div class="swiper-slide text-center">
+                            <h5>What people</h5>
+                            <h2>Say About Us</h2>
+                            <div class="reviews-info white-bg">
+                                <img src="images/about-thumb.png" alt="Review">
+                                <p>As I went on, still gaining velocity, the palpitation of night and day merged into
+                                    one
+                                    continuous greyness the sky took on a wonderful deepness of blue, a splendid
+                                    luminous
+                                    color like that of early twilight; the jerking sun became a streak of fire, a
+                                    brilliant
+                                    arch.</p>
+                                <p class="stars-rating">
+                                    <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i
+                                        class="fa fa-star"></i><i class="far fa-star"></i>
+                                </p>
+                                <h4>Magnus Kekhuis</h4>
+                                <p class="gray-txt">Restaurant expert</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- If we need navigation buttons -->
+                    <div class="swiper-button-prev"></div>
+                    <div class="swiper-button-next"></div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- About -->
+    <div class="row primary-bg about-row">
+        <div id="about" class="container about-container section">
+            <div class="row about-wrap">
+                <div class="col-xs-12 col-md-12">
+                    <h5>Press</h5>
+                    <h2>About Us</h2>
+                </div>
+                <div class="col-xs-12 col-md-4">
+                    <div class="press-info white-bg">
+                        <div class="press-header">
+                            <img src="images/newyorktimes-logo.png" alt="New York Times Logo">
+                        </div>
+                        <p>"Apparently we had reached a great height in the atmosphere, for the sky was a dead black,
+                            and
+                            the stars had ceased to twinkle. By the same illusion which lifts the horizon of the sea to
+                            the
+                            level."</p>
+                        <h4>The New York Times</h4>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-md-4">
+                    <div class="press-info white-bg">
+                        <div class="press-header">
+                            <img src="images/theguardian-logo.png" alt="The Guardian Logo">
+                        </div>
+                        <p>"Apparently we had reached a great height in the atmosphere, for the sky was a dead black,
+                            and
+                            the stars had ceased to twinkle. By the same illusion which lifts the horizon of the sea to
+                            the
+                            level."</p>
+                        <h4>The Guardian</h4>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-md-4">
+                    <div class="press-info white-bg">
+                        <div class="press-header">
+                            <img src="images/thewallstreetjournal-logo.png" alt="The Wall Street Journal Logo">
+                        </div>
+                        <p>"Apparently we had reached a great height in the atmosphere, for the sky was a dead black,
+                            and
+                            the stars had ceased to twinkle. By the same illusion which lifts the horizon of the sea to
+                            the
+                            level."</p>
+                        <h4>The Wall Street Journal</h4>
+                    </div>
+                </div>
+                <img class="scrolled" src="images/white-dots.png" alt="Dots">
+            </div>
+        </div>
+    </div>
+
+    <!-- Chef -->
+    <div class="row chef-row">
+        <div id="chef" class="container chef-container section">
+            <div class="row chef-wrap">
+                <div class="col-xs-12 col-md-6">
+                    <div class="chef-img">
+                        <img src="images/chef-img.jpg" alt="Our Chef">
+                        <img class="scrolled" src="images/white-dots.png" alt="Dots">
+                        <div class="chef-icon-wrap">
+                            <i class="chef-icon"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-md-6">
+                    <div class="chef-info">
+                        <h5>The word from</h5>
+                        <h2>Our Chef</h2>
+                        <p>"A peep at some distant orb has power to raise and purify our thoughts like a strain of sacred
+                            music,
+                            or a noble picture, or a passage from the grander poets. It always does one good."</p>
+                        <h4>Slavcho Karbashewski</h4>
+                        <p class="gray-txt">Head Chef</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Table -->
+    <div class="row table-row white-bg">
+        <div id="table" class="container table-container section">
+            <div class="row table-wrap">
+                <div class="col-xs-12 col-md-6">
+                    <h5>Reserve</h5>
+                    <h2>A Table</h2>
+                    <form>
+                        <div class="form-group">
+                            <label for="dateInput">Date</label>
+                            <input type="date" class="form-control" id="dateInput" placeholder="dd/mm/aaaa">
+                        </div>
+                        <div class="form-group">
+                            <label for="timeInput">Time</label>
+                            <select class="custom-select">
+                                <option value="1">10:00 am</option>
+                                <option value="2">11:00 am</option>
+                                <option value="3">12:00 pm</option>
+                                <option value="4">1:00 pm</option>
+                                <option value="5">2:00 pm</option>
+                                <option value="6">3:00 pm</option>
+                                <option value="7">4:00 pm</option>
+                                <option value="8">5:00 pm</option>
+                                <option value="9">6:00 pm</option>
+                                <option value="10" selected>7:00 pm</option>
+                                <option value="11">8:00 pm</option>
+                                <option value="12">9:00 pm</option>
+                                <option value="13">10:00 pm</option>
+                                <option value="14">11:00 pm</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            
+                            <label for="timeInput">Guests</label>
+                            <select class="custom-select">
+                                <option value="1">1 Person</option>
+                                <option value="2" selected>2 Persons</option>
+                                <option value="3">3 Persons</option>
+                                <option value="4">4 Persons</option>
+                                <option value="5">5 Persons</option>
+                                <option value="6">6 Persons</option>
+                                <option value="7">7 Persons</option>
+                                <option value="8">8 Persons</option>
+                                <option value="9">9 Persons</option>
+                                <option value="10">10 Persons</option>
+                            </select>
+                        
+                        </div>
+                        <button class="cta" type="submit">Submit form</button>
+                    </form>
+                </div>
+                <div class="col-xs-12 col-md-6 table-col">
+                    <img class="scrolled" src="images/beige-dots.png" alt="Dots">
+                    <div class="table-img">
+                        <img src="images/table-img.jpg" alt="Table">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer  -->
+    <div class="row footer-row primary-bg">
+        <div id="footer" class="container-fluid footer-container ">
+
+            <div class="footer-wrap text-center">
+                <a class="navbar-brand" href="#">REST</a>
+                <ul class="navbar-nav m-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Menu</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Events</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">News</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Contact</a>
+                    </li>
+                </ul>
+
+                <div class="social-footer">
+                    <a href="https://facebook.com" target="_blank"><i class="fa fa-facebook"></i></a>
+                    <a href="https://twitter.com" target="_blank"><i class="fa fa-twitter"></i></a>
+                    <a href="https://instagram.com" target="_blank"><i class="fa fa-instagram"></i></a>
+                </div>
+
+                <div class="copy-footer">
+                    <script type="text/javascript">
+                        document.write(new Date().getFullYear());
+                    </script>
+                    <span>Restaurant. All Rights Reserved.</span>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+    <!-- Scripts Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
+
+    <script src="https://unpkg.com/swiper/js/swiper.js"></script>
+    <script src="https://unpkg.com/swiper/js/swiper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+    <script src="https://kit.fontawesome.com/f54e0ca49c.js" crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+
+    <!-- Custom Scripts -->
+    <script src="scripts.js"></script>
+
+</body>
+
+</html>
