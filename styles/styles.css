@@ -4696,7 +4696,7 @@ body small {
 /*========================Hero Banner Section==============================*/
 .hero {
   position: relative;
-  background-image: url("https://higueradave.github.io/Test/images/banner-bg.jpg");
+  background-image: url("https://higueradave.github.io/restaurant/images/banner-bg.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -5018,7 +5018,7 @@ body small {
 }
 
 .history-wrap .history-img .cutlery-wrap i::before {
-  background-image: url("https://higueradave.github.io/Test/images/cutlery-icon.png");
+  background-image: url("https://higueradave.github.io/restaurant/images/cutlery-icon.png");
 }
 
 .history-wrap .history-img .scrolled {
@@ -5244,7 +5244,7 @@ body small {
 }
 
 .offers-row .offers-container .offers-wrap .offers-img .cutlery-wrap i::before {
-  background-image: url("https://higueradave.github.io/Test/images/cutlery-icon.png");
+  background-image: url("https://higueradave.github.io/restaurant/images/cutlery-icon.png");
 }
 
 .offers-row .offers-container .offers-wrap .offers-info {
@@ -6897,7 +6897,7 @@ body small {
 }
 
 .chef-wrap .chef-img .chef-icon-wrap i::before {
-  background-image: url("https://higueradave.github.io/Test/images/chef-icon.png");
+  background-image: url("https://higueradave.github.io/restaurant/images/chef-icon.png");
 }
 
 .chef-wrap .chef-img .scrolled {
